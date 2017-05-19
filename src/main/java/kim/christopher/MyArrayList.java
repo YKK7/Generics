@@ -19,14 +19,14 @@ public class MyArrayList<E> {
 
     public void add(E element){
         if(listSize == theList.length){
-            theList = Arrays.copyOf(theList, theList.length + 1);
+            theList = Arrays.copyOf(theList, theList.length + 10);
         }
         theList[listSize++] = element;
     }
 
     public void add(int index, E element){
         if(listSize == theList.length){
-            theList = Arrays.copyOf(theList, theList.length + 1);
+            theList = Arrays.copyOf(theList, theList.length + 10);
         }
         for(int i = theList.length - 2; i >= index; i--){
             theList[i + 1] = theList[i];
@@ -48,6 +48,9 @@ public class MyArrayList<E> {
         E result = (E) theList[index];
         for(int i = index; i < listSize - 1; i++){
             theList[i] = theList[i + 1];
+        }
+        if(listSize < theList.length - 10){
+            theList = Arrays.copyOf(theList, listSize);
         }
         listSize--;
         return result;
